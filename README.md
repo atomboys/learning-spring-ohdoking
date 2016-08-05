@@ -47,6 +47,46 @@ AOP(Aspect-Oriented-Programming) 지원
 편리한 MVC 구조
 WAS에 종속적이지 않은 개발 환경
 
+# Mybatis
+
+SQL Mapper 라이브러리
+
+Spring <-> mybatis-Spring <-> mybatis <-> Mysql
+s
+##장점
+- 간결한 코드
+- SQL문의 분리 운영
+- Spring과 연동으로 자동화된 처리
+- 동적 SQL을 이용한 제어
+
+
+
+## 라이브러리 추가
+mybatis
+mybatis-spring
+spring-jdbc
+spring-test
+
+
+##참고
+- xmlns:context="http://www.springframework.org/schema/context"
+xml 네임 스페이스설정한것
+- xml 에서 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+id 는 스프링 내에서 특정 객체(빈)을 찾기위해 사용하는 일종의 가명(alias)
+class는 불러오는 해당 클래스/ 모듈을 추가해두어야함!
+- RunWith 
+개발을 돌리기위한
+- ContextConfiguration
+해당 xml파일을 이용해서 스프링이 로딩됨
+- @Inject
+스프링이 주입해줌
+- 테스트 케이스에서 spring-test 를 어노테이션 설정으로 실제 스프링의 동작을 확인할수잇음
+- 스프링은 한개의 설정이 잘못되는 경우 실행 자체에 문제가 생기므로 하나씩 설정하고 테스트하느 습관이 필요함!
+
+
+
+
+
 
 #기타
 
