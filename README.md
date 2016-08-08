@@ -52,7 +52,7 @@ WAS에 종속적이지 않은 개발 환경
 SQL Mapper 라이브러리
 
 Spring <-> mybatis-Spring <-> mybatis <-> Mysql
-s
+
 ##장점
 - 간결한 코드
 - SQL문의 분리 운영
@@ -66,6 +66,22 @@ mybatis
 mybatis-spring
 spring-jdbc
 spring-test
+
+
+# 모델2 방식
+화면과 데이터 처리를 분리해서 재사용이 가능하도록 하는 구조
+모델: 데이터 혹은 데이터를 처리하는 영역
+뷰: 결과 화면ㅇ르 만들어 내는 데 사용하는 자원
+컨트롤러: 웹의 요청을 처리하는 존재로 뷰와 모델 사이의 중간 통신 역할
+
+# Front Controller 패턴
+스프링 MVC가 사용하는 구조
+모델2 방식의 진화
+가장 중요한 변화는 전체 로직의 일부만을 컨트롤러가 처리하도록 변경 
+전체 로직의 일부를 컨트롤러에게 위임하고 모든 흐름의 제어는 앞쪽의 Front Controller가 담당하게
+![Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/images/mvc.png)
+
+
 
 
 ##참고
