@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ohdoking.sample.domain.ProductVo;
@@ -55,6 +57,14 @@ public class SampleController {
 	@RequestMapping("doF")
 	public void doF(String msg){
 		logger.info("doF call : " + msg);
+	}
+	
+	//일반 객체 리	
+	@RequestMapping("/doJson")
+	public @ResponseBody ProductVo DoJSON(){
+		ProductVo product = new ProductVo("sample product", 30000);
+		
+		return product;
 	}
 	
 	
