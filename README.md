@@ -82,6 +82,23 @@ spring-test
 ![Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/images/mvc.png)
 
 
+## Mybatis 를 이용할때 SQL 문을 사용하는 방식
+xml 만을 이용해서 SQL문을 설정, DAO에서는 XML을 찾아서 실행하는 코드를 작성하는 방식
+어노테이션과 인터페이스만을 이용해서 SQL문을 설정
+인터페이스와 XML로 작성된 SQL 문의 활용
+
+##Mybatis를 XML을 사용해서 작성하는 경우 코딩의 순서
+테이블 생성 및 개발준비
+- 테이블 생성 및 기타 데이터베이스 관련 설정
+- 도메인 객체의 설계와 클래스 작성
+XML Mapper의 생성과 SQL문 작성
+- xml 작성 및 sql 작성
+- mybatis에서 작성된 xml Mapper를 인식하도록 설정
+DAO 작성
+- DAO 인터페이스 작성 및 구현
+- 스프링 상에 DAO 등록 및 테스트
+
+
 
 
 ##참고
@@ -98,6 +115,7 @@ class는 불러오는 해당 클래스/ 모듈을 추가해두어야함!
 스프링이 주입해줌
 - 테스트 케이스에서 spring-test 를 어노테이션 설정으로 실제 스프링의 동작을 확인할수잇음
 - 스프링은 한개의 설정이 잘못되는 경우 실행 자체에 문제가 생기므로 하나씩 설정하고 테스트하느 습관이 필요함!
+
 
 
 
