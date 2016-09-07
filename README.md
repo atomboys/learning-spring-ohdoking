@@ -39,9 +39,10 @@ POJO(Plain Old Java Object) 기반의 구성
 - 의존성 주입 : 제어의 역행으로 특정 객체에 필요한 객체를 외부에서 결정해서 연결 시키는것을 의미
 - 의존성 주입의 종류(어노테이션으로 가능): 1) 생성자를 통한 주입, 2) set 메소드를 이용한 주입
 AOP(Aspect-Oriented-Programming) 지원
-- 횡단 관심시 (cross-concern) : 로그,트랜잭션같이 비지니스 로직이 아니지만 반드시 처리가 필요한 부분
+- 횡단 관심사 (cross-concern) : 로그,트랜잭션같이 비지니스 로직이 아니지만 반드시 처리가 필요한 부분
 - AOP는 횡단 관심사를 모듈로 분리하는 프로그래밍의 패러다임
 - AspectJ의 문법을 통해 작성
+- 보통 AOP proxy를 사용함(프록시란 말그대로 대리하여 업무를 처리. 함수 호출자는 주요 업무가 아닌 보조 업무를 프록시에게 맡기고, 프록시는 내부적으로 이러한 보조 업무를 처리. - 참고 : http://ooz.co.kr/201)
 트랜잭션의 지원
 - XML이나 어노테이션으로 트랜잭션 관리 가능
 편리한 MVC 구조
@@ -82,6 +83,23 @@ spring-test
 ![Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/images/mvc.png)
 
 
+## Mybatis 를 이용할때 SQL 문을 사용하는 방식
+xml 만을 이용해서 SQL문을 설정, DAO에서는 XML을 찾아서 실행하는 코드를 작성하는 방식
+어노테이션과 인터페이스만을 이용해서 SQL문을 설정
+인터페이스와 XML로 작성된 SQL 문의 활용
+
+##Mybatis를 XML을 사용해서 작성하는 경우 코딩의 순서
+테이블 생성 및 개발준비
+- 테이블 생성 및 기타 데이터베이스 관련 설정
+- 도메인 객체의 설계와 클래스 작성
+XML Mapper의 생성과 SQL문 작성
+- xml 작성 및 sql 작성
+- mybatis에서 작성된 xml Mapper를 인식하도록 설정
+DAO 작성
+- DAO 인터페이스 작성 및 구현
+- 스프링 상에 DAO 등록 및 테스트
+
+
 
 
 ##참고
@@ -98,6 +116,11 @@ class는 불러오는 해당 클래스/ 모듈을 추가해두어야함!
 스프링이 주입해줌
 - 테스트 케이스에서 spring-test 를 어노테이션 설정으로 실제 스프링의 동작을 확인할수잇음
 - 스프링은 한개의 설정이 잘못되는 경우 실행 자체에 문제가 생기므로 하나씩 설정하고 테스트하느 습관이 필요함!
+Restful
+- 상태 없이 url만으로 상태를 파악하여 api를 요청하는것!
+Ajax
+- Ajax(Asynchronous JavaScript and XML)
+- 
 
 
 
