@@ -13,16 +13,48 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/sample"/>
         <property name="username" value="root"/>
         <property name="password" value="qmffn17"/>
+    </bean> -->
+    
+    <!-- log4jdbc 로그를 추가한 연결  -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
+        <property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/sample"/>
+        <property name="username" value="root"/>
+        <property name="password" value="qmffn17"/>
     </bean>
     
-  <!--   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     	<property name="dataSource" ref="dataSource"></property>
-    	<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
-    </bean> -->
+    	<!-- <property name="configLocation" value="classpath:/mybatis-config.xml"></property> -->
+    	<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+    </bean>
+    
+    <!-- 
+    	sqlSessionTemplate 를 설정하면 DAO 작업에서 가장 번거로운 디비와 연결을 맺고 작업이 완료된 후에 연결하는 close작업을 알아서 해준다. 
+    	기본적인 트랜잭션의 관리나 쓰레드 처리의 안정성을 보장해줌
+    	sqlSessionTempalte은 sqlSessionFactory를 생성자로 주입해서 설
+     -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+    	destroy-method="clearCache">
+    	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>	
+   	</bean>
+   	
+   	<!-- 아래와 같이 수동으로 MapperFacotryBean을 이용하여 바인딩 시킬수 있음  -->
+   <!-- 	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="mapperInterface" value="com.ohdoking.sample.mapper.MemberMapper"/>
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   	</bean> -->
+   	
+   	<!-- 작성되는 클래슬르 스프링에서 인식하기위해 추 -->
+   	<!-- <context:component-scan base-package="com.ohdoking.sample.persistence"></context:component-scan> -->
 		
+	<!-- 자동으로 mybatis-spring을 사용하여 MapperFactoryBean이 자동으로 추가되도록 설정  -->
+	<mybatis-spring:scan base-package="com.ohdoking.sample.mapper"/>
+	
+	
 </beans>
