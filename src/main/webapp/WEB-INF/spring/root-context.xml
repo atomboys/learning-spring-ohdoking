@@ -25,7 +25,7 @@
         <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
         <property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/sample"/>
         <property name="username" value="root"/>
-        <property name="password" value="qmffn17"/>
+        <property name="password" value="1234"/>
     </bean>
     
      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -51,8 +51,8 @@
    	</bean> -->
    	
    	<!-- 작성되는 클래슬르 스프링에서 인식하기위해 추 -->
-   	<!-- <context:component-scan base-package="com.ohdoking.sample.persistence"></context:component-scan> -->
-		
+   	<context:component-scan base-package="com.ohdoking.sample"></context:component-scan>
+   	
 	<!-- 자동으로 mybatis-spring을 사용하여 MapperFactoryBean이 자동으로 추가되도록 설정  -->
 	<mybatis-spring:scan base-package="com.ohdoking.sample.mapper"/>
 	

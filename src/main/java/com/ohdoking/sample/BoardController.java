@@ -31,17 +31,26 @@ public class BoardController {
   }
 
    @RequestMapping(value = "/register", method = RequestMethod.POST)
-   public String registPOST(BoardVO board, Model model) throws Exception {
+   public String registPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
   
    logger.info("regist post ...........");
    logger.info(board.toString());
   
    service.regist(board);
   
-   model.addAttribute("result", "success");
+   rttr.addFlashAttribute("result", "SUCCESS");
   
-   return "/board/success";
-//   return "redirect:/board/listAll";
+//   return "/board/success";
+   return "redirect:/board/listAll";
+   }
+   
+   @RequestMapping(value="/listAll", method = RequestMethod.GET)
+   public void listAll(Model model) throws Exception{
+	   logger.info("show all list...");
+	   
+	   model.addAttribute("list",service.listAll());
+	   
+	   
    }
 
 
