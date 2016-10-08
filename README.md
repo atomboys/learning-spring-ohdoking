@@ -99,6 +99,8 @@ DAO 작성
 - DAO 인터페이스 작성 및 구현
 - 스프링 상에 DAO 등록 및 테스트
 
+## persistance Layer - DAO
+
 ## Business Layer - Service
 비지니스 계층은 컨트롤러와 DAO 사이의 접착제 역할
 로직에 필요한 DB 관련 객체들을 모아서 자신이 원하는 일을 처리하는 용도
@@ -107,7 +109,7 @@ DAO 작성
 - 비지니스 계층은 고객마다 다른 부분을 처리할 수 있는 완충장치 역할을 함
 - 컨트롤러와 같은 외부 호출이 영속 계층에 종속적인 상황을 막아줌
 
-## Controller
+## Presentation Layer - Controller
 
 컨트롤러 구현
 
