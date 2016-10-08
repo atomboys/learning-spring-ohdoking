@@ -17,4 +17,8 @@
   <mappers>
     <mapper resource="org/mybatis/example/BlogMapper.xml"/>
   </mappers> -->
+  <!-- xml 을 이용하는데 매번 parametertype 이나 resulttype 을 패키지까지 포함된 클래스명을 작성하기 번거롭다면 아래와 같이 설정  -->
+  <typeAliases>
+  	<package name="com.ohdoking.sample.domain"/>
+  </typeAliases>
 </configuration>
