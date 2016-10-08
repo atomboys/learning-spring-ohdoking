@@ -117,6 +117,20 @@ DAO 작성
 - 결과 처리와 리다이렉트 방식의 페이지 결정
 - 예외 페이지
 
+## 예외처리
+
+spring MVC에서 처리하는 방식
+
+- @ExceptionHandler 어노테이션을 이용한 처리
+- @ControllerAdvice를 이용한 처리
+- @ResponseStatus를 이용한 Http 상태 코드 처리
+
+@ControllerAdvice - 호출되는 메소드에서 발생된 Exception을 모두 처리하는 역할
+
+- 클래스에 @ControllerAdivce 어노테이션 처리
+- 각 메소드에 @ExceptionHandler 를 이용해서 적절한 타입의 Exception을 처리
+
+
 
 ##참고
 - xmlns:context="http://www.springframework.org/schema/context"
