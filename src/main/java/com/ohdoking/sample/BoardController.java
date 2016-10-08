@@ -49,8 +49,39 @@ public class BoardController {
 	   logger.info("show all list...");
 	   
 	   model.addAttribute("list",service.listAll());
-	   
-	   
+   }
+   
+   @RequestMapping(value = "/read", method = RequestMethod.GET)
+   public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+
+     model.addAttribute(service.read(bno));
+   }
+   
+   @RequestMapping(value = "/remove", method = RequestMethod.POST)
+   public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+
+     service.remove(bno);
+
+     rttr.addFlashAttribute("result", "SUCCESS");
+
+     return "redirect:/board/listAll";
+   }
+
+   @RequestMapping(value = "/modify", method = RequestMethod.GET)
+   public void modifyGET(int bno, Model model) throws Exception {
+
+     model.addAttribute(service.read(bno));
+   }
+
+   @RequestMapping(value = "/modify", method = RequestMethod.POST)
+   public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
+
+     logger.info("mod post............");
+
+     service.modify(board);
+     rttr.addFlashAttribute("result", "SUCCESS");
+
+     return "redirect:/board/listAll";
    }
 
 
