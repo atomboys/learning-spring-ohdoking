@@ -107,6 +107,16 @@ DAO 작성
 - 비지니스 계층은 고객마다 다른 부분을 처리할 수 있는 완충장치 역할을 함
 - 컨트롤러와 같은 외부 호출이 영속 계층에 종속적인 상황을 막아줌
 
+## Controller
+
+컨트롤러 구현
+
+고민해야할것
+- 공통적인 URI 경로와 각 기능별 URI
+- 각 URI 에 대한 호출 방식(GET, POST)
+- 결과 처리와 리다이렉트 방식의 페이지 결정
+- 예외 페이지
+
 
 ##참고
 - xmlns:context="http://www.springframework.org/schema/context"
