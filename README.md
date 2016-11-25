@@ -149,6 +149,32 @@ spring MVC에서 처리하는 방식
 3. 자바스크립트 혹은 <\a>태그를 통한 이벤트 처리
 
 
+## 검색
+
+페이징과 동일하나 조회나 페이지 이동 시 유지해야 하는 데이터가 추가된다는 점이 다름.
+유지되어야 하는 데이터 (검색조건, 키워드 등)
+
+## 동적 SQL
+
+### Mybatis의 동적 SQL 기능
+
+1. if
+	코드로 작성할 때의 if 구문에 대한 처리
+2. choose(when, otherwise)
+	switch와 같은 상황에 대한 처리
+3. trim(where, set)
+	로직을 처리하면서 필요한 구문을 변경
+4. foreach
+	컬렉션에 대한 순환 처리
+
+참고 : https://commons.apache.org/proper/commons-ognl/language-guide.html
+
+#### 동적 SQL을 이용하기 이용하기 위한 개발 순서
+
+1. 동적 SQL의 적용이 필요한 메소드의 설정
+2. XML Mapper를 이용한 SQL문 처리
+3. 동적 SQL 문의 생성 확인 및 테스트
+
 
 
 
