@@ -1,5 +1,7 @@
 package com.ohdoking.sample;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ohdoking.sample.domain.BoardVO;
+import com.ohdoking.sample.domain.Criteria;
 import com.ohdoking.sample.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,17 +31,20 @@ public class BoardDAOTest {
   @Test
   public void testCreate() throws Exception {
 
-    BoardVO board = new BoardVO();
-    board.setTitle("junit title");
-    board.setContent("junit content");
-    board.setWriter("user00");
-    dao.create(board);
+	for(int i = 8 ; i < 20; i++){
+		BoardVO board = new BoardVO();
+	    board.setTitle("junit title"+i);
+	    board.setContent("junit content"+i);
+	    board.setWriter("user00");
+	    dao.create(board);
+	}
+    
   }
 
   @Test
   public void testRead() throws Exception {
 
-    logger.info(dao.read(1).toString());
+    logger.info(dao.read(2).toString());
   }
 
   @Test
@@ -62,6 +68,69 @@ public class BoardDAOTest {
 
     logger.info(dao.listAll().toString());
 
+  }
+  
+  @Test
+  public void testListPage() throws Exception{
+	  int page = 3;
+	  
+	  List<BoardVO> list = dao.listPage(page);
+	  
+	  for(BoardVO boardVO: list){
+		  logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
+	  }
+  }
+  
+  @Test
+  public void testListCriteria() throws Exception{
+	  Criteria criteria = new Criteria();
+	  criteria.setPage(2);
+	  criteria.setPerPageNum(20);
+	  
+	  List<BoardVO> list = dao.listCriteria(criteria);
+
+//	  for(BoardVO boardVO: list){
+//		  logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
+//	  }
+	  
+	  logger.info(list.size()+"");
+	  
+  }
+  
+  /*
+   * 
+   * URI를 작성할대 도움이 되는 클래스 
+		UriComponents
+		UriComponentsBuilder
+   */
+  @Test
+  public void testURI() throws Exception{
+	  UriComponents uriComponent = 
+			  UriComponentsBuilder.newInstance()
+			  .path("/board/read")
+			  .queryParam("bno", 12)
+			  .queryParam("perPageNum", 20)
+			  .build();
+	  
+	  assertEquals("/board/read?bno=12&perPageNum=20", uriComponent.toString());
+	  
+	  logger.info(uriComponent.toString());
+  }
+  
+  @Test
+  public void testURI2() throws Exception{
+	  UriComponents uriComponent = 
+			  UriComponentsBuilder.newInstance()
+			  .path("/{module}/{page}")
+			  .queryParam("bno", 12)
+			  .queryParam("perPageNum", 20)
+			  .build()
+			  .expand("board","read")
+			  .encode();
+	  
+	  assertEquals("/board/read?bno=12&perPageNum=20", uriComponent.toString());
+	  
+	  logger.info(uriComponent.toString());
   }
 
 }

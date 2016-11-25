@@ -3,6 +3,7 @@ package com.ohdoking.sample.persistence;
 import java.util.List;
 
 import com.ohdoking.sample.domain.BoardVO;
+import com.ohdoking.sample.domain.Criteria;
 
 
 public interface BoardDAO {
@@ -16,6 +17,11 @@ public interface BoardDAO {
 	public void delete(Integer bno) throws Exception;
 
 	public List<BoardVO> listAll() throws Exception;
-
+	
+	public List<BoardVO> listPage(int page) throws Exception;
+	
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
+	
+	public int countPaging(Criteria cri) throws Exception;
 
 }
