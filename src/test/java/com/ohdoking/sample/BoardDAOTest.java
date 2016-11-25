@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.naming.directory.SearchControls;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ohdoking.sample.domain.BoardVO;
 import com.ohdoking.sample.domain.Criteria;
+import com.ohdoking.sample.domain.SearchCriteria;
 import com.ohdoking.sample.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -131,6 +133,28 @@ public class BoardDAOTest {
 	  assertEquals("/board/read?bno=12&perPageNum=20", uriComponent.toString());
 	  
 	  logger.info(uriComponent.toString());
+  }
+  
+  
+  @Test
+  public void testDynatmic1() throws Exception{
+	  
+	  SearchCriteria cri = new SearchCriteria();
+	  cri.setPage(1);
+	  cri.setKeyword("11");
+	  cri.setSearchType("w");
+	  
+	  logger.info("~~~~~~~~~~~");
+	  
+	  List<BoardVO> list = dao.listSearch(cri);
+	  
+	  for(BoardVO boardVO: list){
+		  logger.info(boardVO.getBno() + " : " + boardVO.getTitle() + " : " + boardVO.getContent());
+	  }
+	  
+	  logger.info("~~~~~~~~~~~");
+	  
+	  logger.info("COUNT : "+dao.listSearchCount(cri));
   }
 
 }
