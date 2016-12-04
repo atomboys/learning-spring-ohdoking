@@ -176,6 +176,29 @@ spring MVC에서 처리하는 방식
 3. 동적 SQL 문의 생성 확인 및 테스트
 
 
+## REST
+
+REpresentational State Transfer 의 약자
+하나의 URI는 하나의 고유한 리소스(Resource)를 대표하도록 설계된다는 개념
+특정한 URI는 반드시 그에 상응하는 데이터 자체를 의미하는 방식
+REST방식의 서비스 제공 하는 것을 **Restful** 이라고함.
+
+## ajax 댓글 처리
+
+### @RestController
+
+spring4에서는 기존의 특정한 JSP와 같은 뷰를 만들어내는 것이 목적이 아닌 REST 방식의 데이터 처리를 위해서 사용하는 어노테이션
+@ResponseBody으로 리턴 메소드타입을 지정해주지 않아도 자체를 리턴할수있다.(스프링 MessageConverter)
+
+list, map, vo
+리턴 방식은 단순 문자열(text/html),XML ,JSON 등으로 리턴함
+
+#### ResponseEntity Type
+
+
+
+
+
 
 
 

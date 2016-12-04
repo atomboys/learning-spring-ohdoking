@@ -118,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   count(bno)
 		 from 
 		   tbl_board 
-		 where bno > 0;
+		 where bno > 0
 		 ]]>		
 		 
 		 <include refid="search"></include> 

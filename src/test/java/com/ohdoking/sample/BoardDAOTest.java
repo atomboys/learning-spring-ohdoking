@@ -101,7 +101,7 @@ public class BoardDAOTest {
   
   /*
    * 
-   * URI를 작성할대 도움이 되는 클래스 
+   * URI瑜� �옉�꽦�븷�� �룄���씠 �릺�뒗 �겢�옒�뒪 
 		UriComponents
 		UriComponentsBuilder
    */
@@ -141,7 +141,7 @@ public class BoardDAOTest {
 	  
 	  SearchCriteria cri = new SearchCriteria();
 	  cri.setPage(1);
-	  cri.setKeyword("11");
+	  cri.setKeyword("tets");
 	  cri.setSearchType("w");
 	  
 	  logger.info("~~~~~~~~~~~");

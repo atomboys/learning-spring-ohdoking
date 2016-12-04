@@ -17,7 +17,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/sample"/>
         <property name="username" value="root"/>
-        <property name="password" value="qmffn17"/>
+        <property name="password" value="1234"/>
     </bean>
     
     <!-- log4jdbc 로그를 추가한 연결  -->
