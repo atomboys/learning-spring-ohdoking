@@ -18,7 +18,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.ohdoking.sample.mapper.ReplyMapper";
+	private static String namespace = "org.ohdoking.sample.mapper.ReplyMapper";
 
 	@Override
 	public List<ReplyVO> list(Integer bno) throws Exception {

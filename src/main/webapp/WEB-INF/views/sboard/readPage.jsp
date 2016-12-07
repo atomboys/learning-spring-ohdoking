@@ -194,17 +194,17 @@
 		var str = "";
 
 		if (pageMaker.prev) {
-			str += "<li><a href='" + (pageMaker.startPage - 1)
+			str += "<li><a href='${pageContext.request.contextPath}/" + (pageMaker.startPage - 1)
 					+ "'> << </a></li>";
 		}
 
 		for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
 			var strClass = pageMaker.cri.page == i ? 'class=active' : '';
-			str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
+			str += "<li "+strClass+"><a href='${pageContext.request.contextPath}/"+i+"'>" + i + "</a></li>";
 		}
 
 		if (pageMaker.next) {
-			str += "<li><a href='" + (pageMaker.endPage + 1)
+			str += "<li><a href='${pageContext.request.contextPath}/" + (pageMaker.endPage + 1)
 					+ "'> >> </a></li>";
 		}
 
@@ -216,7 +216,7 @@
 		if ($(".timeline li").size() > 1) {
 			return;
 		}
-		getPage("/replies/" + bno + "/1");
+		getPage("${pageContext.request.contextPath}/replies/" + bno + "/1");
 
 	});
 	
@@ -227,7 +227,7 @@
 		
 		replyPage = $(this).attr("href");
 		
-		getPage("/replies/"+bno+"/"+replyPage);
+		getPage("${pageContext.request.contextPath}/replies/"+bno+"/"+replyPage);
 		
 	});
 	
@@ -242,7 +242,7 @@
 		  
 		  $.ajax({
 				type:'post',
-				url:'/replies/',
+				url:'${pageContext.request.contextPath}/replies/',
 				headers: { 
 				      "Content-Type": "application/json",
 				      "X-HTTP-Method-Override": "POST" },
@@ -253,7 +253,7 @@
 					if(result == 'SUCCESS'){
 						alert("등록 되었습니다.");
 						replyPage = 1;
-						getPage("/replies/"+bno+"/"+replyPage );
+						getPage("${pageContext.request.contextPath}/replies/"+bno+"/"+replyPage );
 						replyerObj.val("");
 						replytextObj.val("");
 					}
@@ -279,7 +279,7 @@
 		  
 		  $.ajax({
 				type:'put',
-				url:'/replies/'+rno,
+				url:'${pageContext.request.contextPath}/replies/'+rno,
 				headers: { 
 				      "Content-Type": "application/json",
 				      "X-HTTP-Method-Override": "PUT" },
@@ -289,7 +289,7 @@
 					console.log("result: " + result);
 					if(result == 'SUCCESS'){
 						alert("수정 되었습니다.");
-						getPage("/replies/"+bno+"/"+replyPage );
+						getPage("${pageContext.request.contextPath}/replies/"+bno+"/"+replyPage );
 					}
 			}});
 	});
@@ -301,7 +301,7 @@
 		  
 		  $.ajax({
 				type:'delete',
-				url:'/replies/'+rno,
+				url:'${pageContext.request.contextPath}/replies/'+rno,
 				headers: { 
 				      "Content-Type": "application/json",
 				      "X-HTTP-Method-Override": "DELETE" },
@@ -310,7 +310,7 @@
 					console.log("result: " + result);
 					if(result == 'SUCCESS'){
 						alert("삭제 되었습니다.");
-						getPage("/replies/"+bno+"/"+replyPage );
+						getPage("${pageContext.request.contextPath}/replies/"+bno+"/"+replyPage );
 					}
 			}});
 	});

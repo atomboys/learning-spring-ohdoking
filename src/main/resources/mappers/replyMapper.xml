@@ -5,7 +5,7 @@
 
 <mapper namespace="org.ohdoking.sample.mapper.ReplyMapper">
 
-	<select id="list" resultType="ReplyVO">
+	<select id="list" resultType="com.ohdoking.sample.domain.ReplyVO">
 		select * from tbl_reply where bno = #{bno} order by rno desc
 	</select>
 
@@ -23,7 +23,7 @@
 		delete from tbl_reply where rno = #{rno}
 	</delete>
 
-	<select resultType="ReplyVO" id="listPage"> select * from tbl_reply where
+	<select resultType="com.ohdoking.sample.domain.ReplyVO" id="listPage"> select * from tbl_reply where
 		bno = #{bno} order by rno desc limit #{cri.pageStart},
 		#{cri.perPageNum} </select>
 
