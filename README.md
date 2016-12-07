@@ -183,6 +183,36 @@ REpresentational State Transfer 의 약자
 특정한 URI는 반드시 그에 상응하는 데이터 자체를 의미하는 방식
 REST방식의 서비스 제공 하는 것을 **Restful** 이라고함.
 
+### Rest가 지원되지 않는 브라우저에서?!
+@REST가 지원하지 않는 브라우저에서 해결책은 POST방시긍로 전송하고 추가적인 저보를 이용해서 PUT, DELETE, PATCH와 같은 정보를 전송하는 것
+이를 OverloadedPOST 라고함
+header에 "X-HTTP-Method-Override" 에 담아서 보낸다.
+
+<form> 태그내에서 
+```
+<input type="hidden" name="_method" value="put"> 
+```
+과 같은 형태로 보낸다.
+스프링에서는 HiddenHttpMethodFilter라는 것 제공
+이는 web.xml 에서 추가함
+```
+<filter>
+            <filter-name>httpMethodFilter</filter-name>
+            <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+```    
+
+### REST 방식 원칙
+URI가 원하는 리소스를 의미
+URI에는 식별할 수 있는 데이터를 같이 전달하는 것이 일반적
+
+
+
 ## ajax 댓글 처리
 
 ### @RestController
@@ -195,7 +225,34 @@ list, map, vo
 
 #### ResponseEntity Type
 
+##### 100 번대
+	현재 데이터의 처리중인 상태
+	100: 데이터 일부를 서버가 받은 상태
+##### 200번대
+	정상적인 응답
+    200: 에러없이 정상 처리
+    204: 정상 처리되었으나 서버에서 보내줄 데이터가 없음.
+##### 300번대
+	다른 URL 처리
+    301: 요청된 페이지가 새 URL로 변경되었음.
+    304: 이미 기존의 데이터와 변경된 것이 없음
+##### 400번대
+	서버에서 인식 할수 없음
+    400: 전송된 Request에 문제가 있어서 서버가 인식할 수 없음.
+    403: 서버에서 허락되지 않음.
+    404: URL에 해당하는 자원을 찾을수 없음.
+    405: 전송방식이 허락되지 않음(REST에서 자주 발생)
+##### 500번대
+	서버내부의 문제
+    500: 서버에서 처리시 문제가 발생
+    502: 게이트웨이나 프록시 상태의 문제(과부하 등)
+    503: 일시적인 과부하나 서비스 중단 상태
+    504: 지정된 처리시간이 지나서 처리되지 못함
+    
+ResponseEntity class : 개발자가 직접 결과 데이터 + HTTP의 상태 코드를 직접 제어할 수 있는 클래스
 
+
+##
 
 
 

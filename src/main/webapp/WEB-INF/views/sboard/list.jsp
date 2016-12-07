@@ -21,23 +21,7 @@
 
 
 				<div class='box-body'>
-					<!-- 
-						n
-							검색 조건 없음
-						t
-							제목
-						c
-							내용
-						w
-							작성
-						tc
-							제목, 내용 
-						cw
-							내용, 작성자						
-						tcw
-							제목, 내용, 작성
-					 -->
-				
+
 					<select name="searchType">
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
@@ -89,7 +73,8 @@
 								<td>${boardVO.bno}</td>
 								<td><a
 									href='${pageContext.request.contextPath}/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${boardVO.bno}'>
-										${boardVO.title} </a></td>
+										${boardVO.title} <strong>[ ${boardVO.replycnt} ]</strong>
+								</a></td>
 								<td>${boardVO.writer}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 										value="${boardVO.regdate}" /></td>
