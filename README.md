@@ -252,7 +252,67 @@ list, map, vo
 ResponseEntity class : 개발자가 직접 결과 데이터 + HTTP의 상태 코드를 직접 제어할 수 있는 클래스
 
 
-##
+#AOP
+AOP(Aspect Oriented Programming의 약자)
+횡단 관심사(cross-concern) : 중요한 작업(비지니스 로직)은 아니지만 반드시 해야하는 공통작업
+예를들면 보안, 로깅(성능 모니터링), 트랜잭션
+
+AOP는 프록시 패턴 방식을 통해서 구현된다.
+외부에서 특정한 객체(target)을 호출하면 실제 객체를 감싸고 있는 바깥쪽 객체(Proxy)를 통해서 호출이 전달됨.
+Proxy객체는 AOP의 기능이 적용된 상태에서 호출을 받아 사용되고, 실제객체와 동일한 타입을 자동으로 생성할 수 있기 때문에 외부에서는 실제 객체와 동일한 타입으로 호출할 수 있다.
+
+Proxy는 일반적인 의미에서는 직접 호출하는 방식이 아니라 간접적인 호출을 하는 것을 의미
+즉 원래 객체인 target을 호출할 때 외부에서 직접 target을 호출하는 것이 아니라 Advice가 적용된 Proxy객체를 통해서 호출한다는것을 의미
+
+##AOP용어
+
+1.	Aspect
+공통 관심사에 대한 추상적인 명칭.
+2.  Advice
+실제로 기능을 구현한 객체(적용시키고 싶은 코드)
+    * Before Advice
+    target의 메소드 호출 전에 적용
+    * After returning
+    target의 메소드 호출 이후에 적용
+    * After T
+    target의 예외 발생 후 적용
+    * After
+    target의 메소드 호출 후 예외의 발생에 관계없이 적용
+    * Around
+    target의 메소드 호출 이전과 이후에 모두 적용(가장 광범위하게 사용됨)
+        메소드 호출 자체를 제어할 수 있기 때문에 가장 강력함
+        Around 어노테이션 이용시에 반드시 메소드의 리턴 타입은 Object로 선언해야함
+        다른 Advice와 달리 Around는 메소드를 직접 호출하고 결과를 반환해 주어야만 정상적인 처리가 된다.
+        ProceedingJoinPoint 클래스의 proceed() 메소드를 사용하여 '다음 advice를 실행하거나 실제 target 객체의 메소드를 실행하는 기능 사용' 가능
+3.	Join Point
+공통 관심사를 적용할 수 있는 대상
+    작성된 Adivce가 활약할 수 잇는 위치를 의미
+    Spring AOP에서는 각 객체의 메소드가 이에 해당
+    * Class의 메소드
+    * Object[] getArgs()
+전달되는 모든 파라미터들을 Object의 배얼로 가져옴
+        * String getKind()
+        해당 Advice의 타입을 알아낸다.
+        * Signature getSignature()
+        실행하는 대상의 개체의 메소드에 대한 정보를 알아낼때 사용
+        * Object getTarget()
+        target 객체를 알아 낼 때 사용
+        * Object getThis()
+        Advice를 행하는 객체를 알아낼때 사용
+4.	Pointcuts
+여러 메소드들 중에 실제로 Advice가 적용될 대상 메소드
+    여러 joinPoints중에서 Adivice를 적용할 대상을 선택하는 정보
+    이를 통해 특정 메소드는 Advice가 적용된 형태로 동작
+5.	target
+대상 메소드를 가지는 객체
+    실제 비지니스 로직을 수행하는 객체를 의미
+6.	Proxy
+Adivce가 적용되었을때 만들어지는 객체
+7.	Introduction
+target에는 없는 새로운 메소드나 인스턴스 변수를 추가하는 기능
+8.	Weaving
+Advice와 target이 결합되어서 프록시 객체를 만드는 과정
+
 
 
 
